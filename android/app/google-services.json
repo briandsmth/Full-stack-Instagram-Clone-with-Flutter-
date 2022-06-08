@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "56343190792",
+    "project_id": "instafire-fm1",
+    "storage_bucket": "instafire-fm1.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:56343190792:android:eaaec86c8df4cc8c3ae0bd",
+        "android_client_info": {
+          "package_name": "com.example.instafire_flutter"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "56343190792-9gj530gmu3rti0e0s1h87cu9a5lqmd3d.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAZSq-7L6w_o1auPlmFQMOns7BdjkVWhls"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "56343190792-9gj530gmu3rti0e0s1h87cu9a5lqmd3d.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
