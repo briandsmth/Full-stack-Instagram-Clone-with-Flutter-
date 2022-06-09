@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
@@ -5,7 +6,6 @@ import 'package:instafire_flutter/responsive/mobile_layout.dart';
 import 'package:instafire_flutter/responsive/responsive_screen.dart';
 import 'package:instafire_flutter/responsive/web_layout.dart';
 import 'package:instafire_flutter/screens/login.dart';
-import 'package:instafire_flutter/screens/signup.dart';
 import 'package:instafire_flutter/utils/colors.dart';
 
 void main() async {
@@ -35,7 +35,29 @@ class MyApp extends StatelessWidget {
       title: 'InstaFire',
       theme: ThemeData.dark()
           .copyWith(scaffoldBackgroundColor: mobilebackgroundcolor),
-      home: SignUpScreen(),
+      home: StreamBuilder(
+          stream: FirebaseAuth.instance.authStateChanges(),
+          builder: (context, snapshot) {
+            if (snapshot.connectionState == ConnectionState.active) {
+              if (snapshot.hasData) {
+                return const ResponsiveLayout(
+                    webscreenLayout: WebScreenLayout(),
+                    mobilescreenLayout: MobileScreenLayout());
+              } else if (snapshot.hasError) {
+                return Center(
+                  child: Text('${snapshot.error}'),
+                );
+              }
+            }
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(
+                  color: primarycolor,
+                ),
+              );
+            }
+            return LoginScreen();
+          }),
     );
   }
 }

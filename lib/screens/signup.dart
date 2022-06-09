@@ -4,9 +4,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:instafire_flutter/resources/auth_method.dart';
+import 'package:instafire_flutter/screens/login.dart';
 import 'package:instafire_flutter/utils/colors.dart';
 import 'package:instafire_flutter/utils/utils.dart';
 
+import '../responsive/mobile_layout.dart';
+import '../responsive/responsive_screen.dart';
+import '../responsive/web_layout.dart';
 import '../widgets/textfield_input.dart';
 
 class SignUpScreen extends StatefulWidget {
@@ -22,6 +26,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _bioController = TextEditingController();
   Uint8List? _image;
+  bool _isLoading = false;
 
   @override
   void dispose() {
@@ -31,6 +36,44 @@ class _SignUpScreenState extends State<SignUpScreen> {
     _passwordController.dispose();
     _usernameController.dispose();
     _bioController.dispose();
+  }
+
+  void signUp() async {
+    setState(() {
+      _isLoading = true;
+    });
+    String res = await AuthMethods().signUpUser(
+        email: _emailController.text,
+        password: _passwordController.text,
+        username: _usernameController.text,
+        bio: _bioController.text,
+        file: _image!);
+
+    if (res == 'success') {
+      setState(() {
+        _isLoading = false;
+      });
+      // navigate to the home screen
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(
+          builder: (context) => const ResponsiveLayout(
+            webscreenLayout: WebScreenLayout(),
+            mobilescreenLayout: MobileScreenLayout(),
+          ),
+        ),
+      );
+    } else {
+      setState(() {
+        _isLoading = false;
+      });
+      // show the error
+      showSnackBar(res, context);
+    }
+  }
+
+  void navigatetoLogin() {
+    Navigator.of(context)
+        .push(MaterialPageRoute(builder: (context) => LoginScreen()));
   }
 
   void selectImage() async {
@@ -122,17 +165,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
             ),
             //button signup
             InkWell(
-              onTap: () async {
-                String res = await AuthMethods().signUpUser(
-                    email: _emailController.text,
-                    password: _passwordController.text,
-                    username: _usernameController.text,
-                    bio: _bioController.text,
-                    file: _image!);
-                print(res);
-              },
+              onTap: signUp,
               child: Container(
-                child: const Text('Sign up'),
+                child: _isLoading
+                    ? const Center(
+                        child: CircularProgressIndicator(
+                          color: primarycolor,
+                        ),
+                      )
+                    : const Text('Sign up'),
                 width: double.infinity,
                 alignment: Alignment.center,
                 padding: const EdgeInsets.symmetric(vertical: 12),
@@ -158,7 +199,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                   padding: const EdgeInsets.symmetric(vertical: 8),
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: navigatetoLogin,
                   child: Container(
                     child: const Text(
                       "Sign in",
