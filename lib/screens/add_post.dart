@@ -10,7 +10,7 @@ import 'package:instafire_flutter/utils/utils.dart';
 import 'package:provider/provider.dart';
 
 class AddPostScreen extends StatefulWidget {
-  AddPostScreen({Key? key}) : super(key: key);
+  const AddPostScreen({Key? key}) : super(key: key);
 
   @override
   State<AddPostScreen> createState() => _AddPostScreenState();
@@ -23,7 +23,6 @@ class _AddPostScreenState extends State<AddPostScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _descriptionController.dispose();
   }
@@ -57,11 +56,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
         context: context,
         builder: (context) {
           return SimpleDialog(
-            title: Text('Create a Post'),
+            title: const Text('Create a Post'),
             children: [
               SimpleDialogOption(
-                padding: EdgeInsets.all(20),
-                child: Text('Take a Photo'),
+                padding: const EdgeInsets.all(20),
+                child: const Text('Take a Photo'),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   Uint8List file = await pickImage(ImageSource.camera);
@@ -71,8 +70,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 },
               ),
               SimpleDialogOption(
-                padding: EdgeInsets.all(20),
-                child: Text('Choose from Gallery'),
+                padding: const EdgeInsets.all(20),
+                child: const Text('Choose from Gallery'),
                 onPressed: () async {
                   Navigator.of(context).pop();
                   Uint8List file = await pickImage(ImageSource.gallery);
@@ -82,8 +81,8 @@ class _AddPostScreenState extends State<AddPostScreen> {
                 },
               ),
               SimpleDialogOption(
-                padding: EdgeInsets.all(20),
-                child: Text('Cancel'),
+                padding: const EdgeInsets.all(20),
+                child: const Text('Cancel'),
                 onPressed: () async {
                   Navigator.of(context).pop();
                 },
@@ -105,7 +104,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
     return _file == null
         ? Center(
             child: IconButton(
-              icon: Icon(Icons.upload),
+              icon: const Icon(Icons.upload),
               onPressed: () => _selectImage(context),
             ),
           )
@@ -113,13 +112,13 @@ class _AddPostScreenState extends State<AddPostScreen> {
             appBar: AppBar(
               backgroundColor: mobilebackgroundcolor,
               leading:
-                  IconButton(onPressed: clearImage, icon: Icon(Icons.arrow_back)),
-              title: Text('Post to'),
+                  IconButton(onPressed: clearImage, icon: const Icon(Icons.arrow_back)),
+              title: const Text('Post to'),
               actions: [
                 TextButton(
                     onPressed: () =>
                         postImage(user.uid, user.username, user.photoUrl),
-                    child: Text(
+                    child: const Text(
                       'Post',
                       style: TextStyle(
                           color: Colors.blueAccent,
@@ -131,11 +130,11 @@ class _AddPostScreenState extends State<AddPostScreen> {
             body: Column(
               children: [
                 _isLoading
-                    ? LinearProgressIndicator()
-                    : Padding(
+                    ? const LinearProgressIndicator()
+                    : const Padding(
                         padding: EdgeInsets.only(top: 0),
                       ),
-                Divider(),
+                const Divider(),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -147,7 +146,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                       width: MediaQuery.of(context).size.width * 0.4,
                       child: TextField(
                         controller: _descriptionController,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           hintText: 'Write a caption...',
                           border: InputBorder.none,
                         ),
@@ -169,7 +168,7 @@ class _AddPostScreenState extends State<AddPostScreen> {
                         ),
                       ),
                     ),
-                    Divider()
+                    const Divider()
                   ],
                 )
               ],

@@ -14,7 +14,7 @@ import '../responsive/web_layout.dart';
 import '../widgets/textfield_input.dart';
 
 class SignUpScreen extends StatefulWidget {
-  SignUpScreen({Key? key}) : super(key: key);
+  const SignUpScreen({Key? key}) : super(key: key);
 
   @override
   State<SignUpScreen> createState() => _SignUpScreenState();
@@ -30,7 +30,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
@@ -73,7 +72,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   void navigatetoLogin() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => LoginScreen()));
+        .push(MaterialPageRoute(builder: (context) => const LoginScreen()));
   }
 
   void selectImage() async {
@@ -114,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         radius: 64,
                         backgroundImage: MemoryImage(_image!),
                       )
-                    : CircleAvatar(
+                    : const CircleAvatar(
                         radius: 64,
                         backgroundImage: NetworkImage(
                             'https://lh3.googleusercontent.com/a-/AOh14Ghf0y7Wx5bpYkRlXlOUCP2rKphyUZJeXqOKdZkR3A=s288-p-rw-no'),
@@ -123,7 +122,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     bottom: -10,
                     left: 80,
                     child: IconButton(
-                        onPressed: selectImage, icon: Icon(Icons.add_a_photo)))
+                        onPressed: selectImage, icon: const Icon(Icons.add_a_photo)))
               ],
             ),
             const SizedBox(

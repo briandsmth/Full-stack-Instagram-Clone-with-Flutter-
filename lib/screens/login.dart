@@ -11,7 +11,7 @@ import '../responsive/responsive_screen.dart';
 import '../responsive/web_layout.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({Key? key}) : super(key: key);
+  const LoginScreen({Key? key}) : super(key: key);
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -24,7 +24,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     _emailController.dispose();
     _passwordController.dispose();
@@ -59,7 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   void navigatetoSignup() {
     Navigator.of(context)
-        .push(MaterialPageRoute(builder: (context) => SignUpScreen()));
+        .push(MaterialPageRoute(builder: (context) => const SignUpScreen()));
   }
 
   @override
