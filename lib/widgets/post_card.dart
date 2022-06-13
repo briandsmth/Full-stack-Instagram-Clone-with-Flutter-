@@ -52,9 +52,9 @@ class _PostCardState extends State<PostCard> {
     return Container(
       decoration: BoxDecoration(
         border: Border.all(
-          color: width > webscreensize ? secondarycolor : mobilebackgroundcolor
-        ),
-      color: mobilebackgroundcolor,
+            color:
+                width > webscreensize ? secondarycolor : mobilebackgroundcolor),
+        color: mobilebackgroundcolor,
       ),
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
@@ -77,10 +77,10 @@ class _PostCardState extends State<PostCard> {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     crossAxisAlignment: CrossAxisAlignment.start,
-                    children: const [
+                    children: [
                       Text(
-                        'username',
-                        style: TextStyle(fontWeight: FontWeight.bold),
+                        widget.snap['username'],
+                        style: const TextStyle(fontWeight: FontWeight.bold),
                       )
                     ],
                   ),
