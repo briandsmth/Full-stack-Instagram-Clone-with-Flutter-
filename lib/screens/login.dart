@@ -3,6 +3,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:instafire_flutter/resources/auth_method.dart';
 import 'package:instafire_flutter/screens/signup.dart';
 import 'package:instafire_flutter/utils/colors.dart';
+import 'package:instafire_flutter/utils/global_key.dart';
 import 'package:instafire_flutter/utils/utils.dart';
 import 'package:instafire_flutter/widgets/textfield_input.dart';
 
@@ -66,7 +67,10 @@ class _LoginScreenState extends State<LoginScreen> {
     return Scaffold(
       body: SafeArea(
           child: Container(
-        padding: const EdgeInsets.symmetric(horizontal: 32),
+        padding: MediaQuery.of(context).size.width > webscreensize
+            ? EdgeInsets.symmetric(
+                horizontal: MediaQuery.of(context).size.width / 3)
+            : const EdgeInsets.symmetric(horizontal: 32),
         width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,

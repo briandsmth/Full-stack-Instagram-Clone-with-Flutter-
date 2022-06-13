@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:instafire_flutter/screens/porfile.dart';
 import 'package:instafire_flutter/utils/colors.dart';
 import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class SearchScreen extends StatefulWidget {
-  SearchScreen({Key? key}) : super(key: key);
+  const SearchScreen({Key? key}) : super(key: key);
 
   @override
   State<SearchScreen> createState() => _SearchScreenState();
@@ -27,7 +28,7 @@ class _SearchScreenState extends State<SearchScreen> {
           backgroundColor: mobilebackgroundcolor,
           title: TextFormField(
             controller: _searchCotroller,
-            decoration: InputDecoration(labelText: 'Search for a user'),
+            decoration: const InputDecoration(labelText: 'Search for a user'),
             onFieldSubmitted: (String _) {
               setState(() {
                 isShowUsers = true;
@@ -44,7 +45,7 @@ class _SearchScreenState extends State<SearchScreen> {
                     .get(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -52,14 +53,22 @@ class _SearchScreenState extends State<SearchScreen> {
                   return ListView.builder(
                       itemCount: (snapshot.data! as dynamic).docs.length,
                       itemBuilder: (context, index) {
-                        return ListTile(
-                          leading: CircleAvatar(
-                            backgroundImage: NetworkImage(
-                                (snapshot.data! as dynamic).docs[index]
-                                    ['photoUrl']),
-                          ),
-                          title: Text(
-                            (snapshot.data! as dynamic).docs[index]['username'],
+                        return InkWell(
+                          onTap: () => Navigator.of(context).push(
+                              MaterialPageRoute(
+                                  builder: (context) => ProfileScreen(
+                                      uid: (snapshot.data! as dynamic)
+                                          .docs[index]['uid']))),
+                          child: ListTile(
+                            leading: CircleAvatar(
+                              backgroundImage: NetworkImage(
+                                  (snapshot.data! as dynamic).docs[index]
+                                      ['photoUrl']),
+                            ),
+                            title: Text(
+                              (snapshot.data! as dynamic).docs[index]
+                                  ['username'],
+                            ),
                           ),
                         );
                       });
@@ -69,7 +78,7 @@ class _SearchScreenState extends State<SearchScreen> {
                 future: FirebaseFirestore.instance.collection('posts').get(),
                 builder: (context, snapshot) {
                   if (!snapshot.hasData) {
-                    return Center(
+                    return const Center(
                       child: CircularProgressIndicator(),
                     );
                   }
@@ -82,10 +91,10 @@ class _SearchScreenState extends State<SearchScreen> {
                         crossAxisSpacing: 4,
                         repeatPattern: QuiltedGridRepeatPattern.inverted,
                         pattern: [
-                          QuiltedGridTile(2, 2),
-                          QuiltedGridTile(1, 1),
-                          QuiltedGridTile(1, 1),
-                          QuiltedGridTile(1, 2),
+                          const QuiltedGridTile(2, 2),
+                          const QuiltedGridTile(1, 1),
+                          const QuiltedGridTile(1, 1),
+                          const QuiltedGridTile(1, 2),
                         ]),
                     itemBuilder: (context, index) => Image.network(
                         (snapshot.data! as dynamic).docs[index]['postUrl']),

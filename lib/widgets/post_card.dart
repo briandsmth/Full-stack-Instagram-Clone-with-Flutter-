@@ -7,6 +7,7 @@ import 'package:instafire_flutter/providers/user_provider.dart';
 import 'package:instafire_flutter/resources/firestore_method.dart';
 import 'package:instafire_flutter/screens/comments.dart';
 import 'package:instafire_flutter/utils/colors.dart';
+import 'package:instafire_flutter/utils/global_key.dart';
 import 'package:instafire_flutter/utils/utils.dart';
 import 'package:instafire_flutter/widgets/like_animation.dart';
 import 'package:intl/intl.dart';
@@ -47,8 +48,14 @@ class _PostCardState extends State<PostCard> {
   @override
   Widget build(BuildContext context) {
     final model.User user = Provider.of<UserProvider>(context).getUser;
+    final width = MediaQuery.of(context).size.width;
     return Container(
+      decoration: BoxDecoration(
+        border: Border.all(
+          color: width > webscreensize ? secondarycolor : mobilebackgroundcolor
+        ),
       color: mobilebackgroundcolor,
+      ),
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Column(
         children: [
@@ -135,7 +142,8 @@ class _PostCardState extends State<PostCard> {
                   duration: const Duration(milliseconds: 200),
                   opacity: isLikeAnimating ? 1 : 0,
                   child: LikeAnimation(
-                    child: const Icon(Icons.favorite, color: Colors.white, size: 120),
+                    child: const Icon(Icons.favorite,
+                        color: Colors.white, size: 120),
                     inAnimating: isLikeAnimating,
                     duration: const Duration(milliseconds: 400),
                     onEnd: () {
@@ -213,7 +221,8 @@ class _PostCardState extends State<PostCard> {
                           children: [
                         TextSpan(
                             text: widget.snap['username'],
-                            style: const TextStyle(fontWeight: FontWeight.bold)),
+                            style:
+                                const TextStyle(fontWeight: FontWeight.bold)),
                         TextSpan(
                           text: ' ${widget.snap['description']}',
                           style: const TextStyle(fontWeight: FontWeight.normal),
@@ -225,7 +234,8 @@ class _PostCardState extends State<PostCard> {
                   child: Container(
                     padding: const EdgeInsets.symmetric(vertical: 4),
                     child: Text('View all $commentLength comments',
-                        style: const TextStyle(fontSize: 16, color: secondarycolor)),
+                        style: const TextStyle(
+                            fontSize: 16, color: secondarycolor)),
                   ),
                 ),
                 Container(
@@ -234,7 +244,8 @@ class _PostCardState extends State<PostCard> {
                       DateFormat.yMMMd().format(
                         widget.snap['datePublished'].toDate(),
                       ),
-                      style: const TextStyle(fontSize: 16, color: secondarycolor)),
+                      style:
+                          const TextStyle(fontSize: 16, color: secondarycolor)),
                 )
               ],
             ),
