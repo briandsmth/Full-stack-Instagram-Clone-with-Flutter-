@@ -3,7 +3,7 @@
 FOR NOTE : 
 If you want to run it with ios. You have to configure firebase binding first !!!
 
-![](https://github.com/briandsmth/Full-stack-Instagram-Clone-with-Flutter-/blob/main/Pixel_4_API_31_5554%20-%20Android%20Emulator%20-%20Pixel_4_API_31_5554%20-%2013%20June%202022.mp4)
+![](https://github.com/briandsmth/Full-stack-Instagram-Clone-with-Flutter-/blob/main/demo%20(1).gif)
 
 A new Flutter project.
 
