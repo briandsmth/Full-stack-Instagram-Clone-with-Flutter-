@@ -1,5 +1,9 @@
 # instafire_flutter
 
+FOR NOTE : 
+If you want to run it with ios. You have to configure firebase binding first !!!
+
+
 A new Flutter project.
 
 ## Getting Started
