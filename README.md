@@ -3,7 +3,7 @@
 FOR NOTE : 
 If you want to run it with ios. You have to configure firebase binding first !!!
 
-![](https://github.com/briandsmth/Full-stack-Instagram-Clone-with-Flutter-/blob/main/demooo.gif)
+![](https://github.com/briandsmth/Full-stack-Instagram-Clone-with-Flutter-/blob/main/Hnet.com-image%20(1).gif)
 
 A new Flutter project.
 
