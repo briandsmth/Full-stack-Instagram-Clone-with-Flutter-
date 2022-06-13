@@ -115,14 +115,15 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       )
                     : const CircleAvatar(
                         radius: 64,
-                        backgroundImage: NetworkImage(
-                            'https://lh3.googleusercontent.com/a-/AOh14Ghf0y7Wx5bpYkRlXlOUCP2rKphyUZJeXqOKdZkR3A=s288-p-rw-no'),
+                        backgroundImage:
+                            NetworkImage('https://i.stack.imgur.com/l60Hf.png'),
                       ),
                 Positioned(
                     bottom: -10,
                     left: 80,
                     child: IconButton(
-                        onPressed: selectImage, icon: const Icon(Icons.add_a_photo)))
+                        onPressed: selectImage,
+                        icon: const Icon(Icons.add_a_photo)))
               ],
             ),
             const SizedBox(
